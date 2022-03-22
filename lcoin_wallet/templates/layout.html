@@ -9,7 +9,7 @@
     <meta http-equiv="Expires" content="0" />
     <link
       rel="stylesheet"
-      href="{{ url_for(_scheme='https','static', filename='styles.css') }}"
+      href="{{ url_for('static', filename='styles.css') }}"
     />
     <!-- Latest compiled and minified CSS -->
     <link
@@ -20,7 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link
       rel="shortcut icon"
-      href="{{ url_for(_scheme='https','static', filename='favicon.ico') }}"
+      href="{{ url_for('static', filename='favicon.ico') }}"
     />
     <script>
       window.setTimeout(function () {
@@ -41,7 +41,7 @@
               case "success":
                 console.log(out.state);
                 window.location.replace(
-                  `{{url_for(_scheme='https', 'request')}}?u=${out.username}&a=${out.amount}&s=accept`
+                  `{{url_for('request')}}?u=${out.username}&a=${out.amount}&s=accept`
                 );
                 break;
 
@@ -69,7 +69,7 @@
               case "success":
                 console.log(out.state);
                 window.location.replace(
-                  `{{url_for(_scheme='https','request')}}?u=${out.username}&a=${out.amount}&s=deny`
+                  `{{url_for('request')}}?u=${out.username}&a=${out.amount}&s=deny`
                 );
                 break;
 
