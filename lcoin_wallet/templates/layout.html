@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
@@ -41,8 +42,7 @@
               case "success":
                 console.log(out.state);
                 window.location.replace(
-                  `{{url_for('request', _external=True,
-                  _scheme='https')}}?u=${out.username}&a=${out.amount}&s=accept`
+                  `{{url_for('request')}}?u=${out.username}&a=${out.amount}&s=accept`
                 );
                 break;
 
@@ -62,7 +62,7 @@
     </script>
     <script>
       function make_api_deny_call(key) {
-        const url = `https://lcoin.es/api/deny_request?key=${key}`;
+        const url = `/api/deny_request?key=${key}`;
         fetch(url)
           .then((res) => res.json())
           .then((out) => {
@@ -70,7 +70,7 @@
               case "success":
                 console.log(out.state);
                 window.location.replace(
-                  `https://lcoin.es/?u=${out.username}&a=${out.amount}&s=deny`
+                  `{{url_for('request')}}?u=${out.username}&a=${out.amount}&s=deny`
                 );
                 break;
 
