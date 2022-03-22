@@ -1,0 +1,233 @@
+.wallet {
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 230%;
+  margin-left: 4%;
+  font-weight: 700;
+}
+
+.done {
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 150%;
+  font-weight: 900;
+  margin-top: 50px;
+}
+
+.bold_text {
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  /*font-size: 230%;*/
+  margin-left: 8%;
+  margin-top: 20px;
+  font-weight: 700;
+}
+
+.dark-text {
+  color: #99989f;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  /*font-size: 230%;*/
+  margin-top: 20px;
+}
+
+.dark-text-form {
+  color: #99989f;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  /*font-size: 230%;*/
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.dark-text-form-file {
+  color: #99989f;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  /*font-size: 230%;*/
+  padding-bottom: 20px;
+}
+
+.dark-text-form-top {
+  font-weight: 400;
+  color: #99989f;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  /*font-size: 230%;*/
+  margin-top: 20px;
+}
+
+.subtext {
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  /*font-size: 230%;*/
+  margin-left: 8%;
+  margin-top: -20px;
+}
+
+.wallet-holder {
+  margin-top: -25px;
+  background-color: #1d1b1d;
+  margin-left: 4%;
+  margin-right: 4%;
+  border-radius: 10px;
+}
+
+.wallet-holder-toprow-text-holder {
+  padding: 4%;
+}
+
+.background {
+  background-color: #000000;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-child {
+  width: 100%;
+}
+
+.round_icon {
+  border-radius: 50%;
+  margin-right: 8%;
+  margin-top: 12px;
+  box-shadow: 1px 1px 5px #13121252;
+}
+
+.button-holder {
+  margin-left: 3%;
+}
+
+.button {
+  color: #f9a241;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #494748;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  height: 30px;
+  box-shadow: 1px 1px 5px #13121283;
+}
+
+.button-request {
+  color: #f9a241;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #494748;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  box-shadow: 1px 1px 5px #13121283;
+  font-size: 0.7em;
+}
+
+button span.text {
+  padding: 12px;
+  font-size: 1.2em;
+}
+
+.button-submit {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+hr.dashed {
+  border-top: 0.1px dashed #bbb;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  opacity: 0.05;
+}
+
+.form-container {
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+input[type="text"] {
+  background-color: #090001;
+  margin-left: -1%;
+  border: 0px solid red;
+  color: white;
+  border-radius: 10px;
+}
+
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #000000;
+  resize: none;
+  border-radius: 10px;
+  border: 0px;
+  margin-left: -1%;
+}
+
+input[type="password"] {
+  background-color: #090001;
+  margin-left: -1%;
+  border: 0px solid red;
+  color: white;
+  border-radius: 10px;
+}
+
+input[type="file"] {
+  border: 0px solid red;
+  color: white;
+}
+.separator {
+  height: 10px;
+}
+
+.link {
+  color: #f9a241;
+}
+
+.checkmark {
+  filter: invert(1);
+}
+
+.badge1 {
+  position: relative;
+}
+.badge1[data-badge]:after {
+  content: attr(data-badge);
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-size: 0.7em;
+  background: #f9a241;
+  color: white;
+  width: 13px;
+  height: 13px;
+  text-align: center;
+  line-height: 18px;
+  border-radius: 50%;
+  box-shadow: 0 0 3px #000000;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(249, 162, 65, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(249, 162, 65, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(249, 162, 65, 0);
+	}
+}
+
+.notify {
+  animation: pulse 2s infinite;
+}
+
+.error-text {
+  color: #f9a241;
+  font-size: 0.7em;
+}

@@ -1,0 +1,163 @@
+{% extends "layout.html" %}
+{% block content %}
+<body class="background">
+   <div class="flex-container">
+      <div class="flex-child" style="margin-left: 3%;">
+         <p class="wallet" style="margin-bottom:40px; margin-top:40px;">Request</p>
+      </div>
+      <div class="flex-child" style="text-align:right; margin-right: 10%;">
+         <p class="done" style="margin-bottom:40px;"><a href="{{url_for('home')}}" style="color: #f9a241;">⨉</a></p>
+      </div>
+   </div>
+   <div class="wallet-holder">
+      <div name="request_maker" class="flex-container" style="margin-top: -20px; padding-left: 4%; position:relative;">
+         <div class="flex-child" >
+            <fieldset class="form-group">
+               <div class="form-container" style="margin-left: 0;">
+                  <form method="POST" action="" enctype="multipart/form-data">
+                     {{ form.hidden_tag() }}
+                     <div class="form-group">
+                        {{ form.to.label(class="dark-text-form") }}
+                        {% if form.to.errors %}
+                        {{ form.to(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                           {% for error in form.to.errors %}
+                           <span class="error-text">{{ error }}</span>
+                           {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.to(class="form-control form-control-lg") }}
+                        {% endif %}
+                     </div>
+                     <div class="form-group">
+                        {{ form.amount.label(class="dark-text-form") }}
+                        {% if form.amount.errors %}
+                        {{ form.amount(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                           {% for error in form.amount.errors %}
+                           <span class="error-text">{{ error }}</span>
+                           {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.amount(class="form-password form-control form-control-lg") }}
+                        {% endif %}
+                     </div>
+                     <div class="form-group">
+                        {{ form.concept.label(class="dark-text-form ") }}
+                        {% if form.concept.errors %}
+                        {{ form.concept(class="form-control form-control-lg is-invalid", style='background-color:#000;') }}
+                        <div class="invalid-feedback">
+                           {% for error in form.concept.errors %}
+                           <span class="error-text">{{ error }}</span>
+                           {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.concept(class="textarea") }}
+                        {% endif %}
+                     </div>
+                     <div style="width: 100%; text-align:center; margin-top:-15px; margin-bottom: -25px;">
+                        <div class="form-group">{{ form.submit(class="button-submit button") }}</div>
+                     </div>
+                  </form>
+               </div>
+            </fieldset>
+         </div>
+      </div>
+   </div>
+
+   {% if requests | length > 0 %}
+   <p class="dark-text" style="font-size: 90%; margin-left: 5%; margin-top: 35px; margin-bottom: 40px;">Requests</p>
+   <div class="wallet-holder">
+      <p class="dark-text" style="font-size: 90%; padding-left: 3%; padding-top: 15px; padding-bottom: 10px;">Pending</p>
+      <div name="transaction" class="flex-container" style="margin-top: -20px; padding-left: 4%; position:relative;">
+         <div class="flex-child" >
+            <p class="bold_text" style="margin-left: 0;">{{requests[0].by}}</p>
+            <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">- ₺{{requests[0].amount}}</p>
+         </div>
+         <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
+            <table class="button-holder" style="position:absolute; right:4%;">
+               <tr>
+                  <td><button onclick="make_api_accept_call({{requests[0].id}})" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call({{requests[0].id}})" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+               </tr>
+            </table>
+         </div>
+      </div>
+
+      {% if requests | length > 1 %}
+      <hr class="dashed" style="margin-top: 10px; opacity: 0.5;">
+      <div name="transaction" class="flex-container" style="margin-top: -20px; padding-left: 4%; position:relative;">
+         <div class="flex-child" >
+            <p class="bold_text" style="margin-left: 0;">{{requests[1].by}}</p>
+            <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">- ₺{{requests[1].amount}}</p>
+         </div>
+         <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
+            <table class="button-holder" style="position:absolute; right:4%;">
+               <tr>
+                  <td><button onclick="make_api_accept_call({{requests[1].id}})" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call({{requests[1].id}})" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+               </tr>
+            </table>
+         </div>
+      </div>
+      
+      {% if requests | length > 2 %}
+      <hr class="dashed" style="margin-top: 10px; opacity: 0.5;">
+      <div name="transaction" class="flex-container" style="margin-top: -20px; padding-left: 4%; position:relative;">
+         <div class="flex-child" >
+            <p class="bold_text" style="margin-left: 0;">{{requests[2].by}}</p>
+            <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">- ₺{{requests[2].amount}}</p>
+         </div>
+         <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
+            <table class="button-holder" style="position:absolute; right:4%;">
+               <tr>
+                  <td><button onclick="make_api_accept_call({{requests[2].id}})" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call({{requests[2].id}})" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+               </tr>
+            </table>
+         </div>
+      </div>
+
+      {% if requests | length > 3 %}
+      <hr class="dashed" style="margin-top: 10px; opacity: 0.5;">
+      <div name="transaction" class="flex-container" style="margin-top: -20px; padding-left: 4%; position:relative;">
+         <div class="flex-child" >
+            <p class="bold_text" style="margin-left: 0;">{{requests[3].by}}</p>
+            <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">- ₺{{requests[3].amount}}</p>
+         </div>
+         <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
+            <table class="button-holder" style="position:absolute; right:4%;">
+               <tr>
+                  <td><button onclick="make_api_accept_call({{requests[3].id}})" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call({{requests[3].id}})" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+               </tr>
+            </table>
+         </div>
+      </div>
+
+      {% if requests | length > 4 %}
+      <hr class="dashed" style="margin-top: 10px; opacity: 0.5;">
+      <div name="transaction" class="flex-container" style="margin-top: -20px; padding-left: 4%; position:relative;">
+         <div class="flex-child" >
+            <p class="bold_text" style="margin-left: 0;">{{requests[4].by}}</p>
+            <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">- ₺{{requests[4].amount}}</p>
+         </div>
+         <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
+            <table class="button-holder" style="position:absolute; right:4%;">
+               <tr>
+                  <td><button onclick="make_api_accept_call({{requests[4].id}})" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call({{requests[4].id}})" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+               </tr>
+            </table>
+         </div>
+      </div>
+
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      <div class="separator"></div>
+   </div>
+</body>
+{% endblock content %}

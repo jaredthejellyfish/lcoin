@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+    <script>
+      window.setTimeout(function () {
+        $(".alert")
+          .fadeTo(500, 0)
+          .slideUp(500, function () {
+            $(this).remove();
+          });
+      }, 5000);
+    </script>
+    <script>
+      function make_api_accept_call(key) {
+        const url = `/api/accept_request?key=${key}`;
+        fetch(url)
+          .then((res) => res.json())
+          .then((out) => {
+            switch (out.state) {
+              case "success":
+                console.log(out.state);
+                window.location.replace(
+                  `{{url_for('request')}}?u=${out.username}&a=${out.amount}&s=accept`
+                );
+                break;
+
+              case "error":
+                console.log(out.state);
+                location.reload();
+                break;
+
+              default:
+                throw "Invalid response!";
+            }
+          })
+          .catch((err) => {
+            throw err;
+          });
+      }
+    </script>
+    <script>
+      function make_api_deny_call(key) {
+        const url = `/api/deny_request?key=${key}`;
+        fetch(url)
+          .then((res) => res.json())
+          .then((out) => {
+            switch (out.state) {
+              case "success":
+                console.log(out.state);
+                window.location.replace(
+                  `{{url_for('request')}}?u=${out.username}&a=${out.amount}&s=deny`
+                );
+                break;
+
+              case "error":
+                console.log(out.state);
+                location.reload();
+                break;
+
+              default:
+                throw "Invalid response!";
+            }
+          })
+          .catch((err) => {
+            throw err;
+          });
+      }
+    </script>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Learn Coin</title>
+    {% endif %}
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  {% with messages = get_flashed_messages(with_categories= true) %} {% if
+  messages %} {% for category, message in messages %}
+  <div class="alert alert-{{ category }}">
+    <button type="button" class="close" data-dismiss="alert">⨉</button>
+    {{ message }}
+  </div>
+  {% endfor %} {% endif %} {% endwith %} {% block content %} {%endblock%}
+</html>

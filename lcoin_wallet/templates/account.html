@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% block content %}
+<body class="background">
+   
+   <div class="flex-container">
+      <div class="flex-child" style="margin-left: 3%;">
+         <p class="wallet" style="margin-bottom:40px; margin-top:40px;">Account</p>
+      </div>
+      <div class="flex-child" style="text-align:right; margin-right: 10%;">
+         <p class="done" style="margin-bottom:40px;"><a href="{{url_for('home')}}" style="color: #f9a241;">⨉</a></p>
+      </div>
+   </div>
+
+   <div class="wallet-holder">
+      <div class="flex-container">
+         <div class="flex-child" style="width: 50px; margin-left: 3%; padding-top: 5px; padding-bottom: 10px;">
+            <img class="round_icon float-left" src="{{ image_file }}" width="60" height="60"></img>
+         </div>
+         <div class="flex-child">
+            <p class="bold_text" style="font-size: 170%">{{ current_user.username }}</p>
+            <p class="subtext" style="font-size: 75%; padding-top: 10px; padding-bottom: 10px;">
+               {{current_user.email}}
+            </p>
+         </div>
+      </div>
+   </div>
+   <p class="dark-text" style="font-size: 90%; margin-left: 5%; margin-top: 35px; margin-bottom: 40px;">Update Account
+   </p>
+   <fieldset class="form-group">
+      <div class="wallet-holder">
+         <div class="form-container">
+            <form method="POST" action="" enctype="multipart/form-data">
+               {{ form.hidden_tag() }}
+               <div class="form-group">
+                  {{ form.username.label(class="dark-text-form-top") }}
+                  {% if form.username.errors %}
+                  {{ form.username(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                     {% for error in form.username.errors %}
+                     <span class="error-text">{{ error }}</span>
+                     {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.username(class="form-control form-control-lg") }}
+                  {% endif %}
+               </div>
+               <div class="form-group">
+                  {{ form.email.label(class="dark-text-form") }}
+                  {% if form.email.errors %}
+                  {{ form.email(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                     {% for error in form.email.errors %}
+                     <span class="error-text">{{ error }}</span>
+                     {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.email(class="form-control form-control-lg") }}
+                  {% endif %}
+               </div>
+               <div class="form-group">
+                  {{ form.picture.label(class="dark-text-form") }}
+                  {{ form.picture(class="dark-text-form-file ") }}
+                  {% if form.picture.errors %}
+                  {% for error in form.picture.errors %}
+                  <span class="text-danger">{{ error }}</span><br>
+                  {% endfor %}
+                  {% endif %}
+               </div>
+               <div style="text-align: center;  margin-bottom: -10px; margin-top: -30px; width: 100%;  ">
+                  <div class="form-group">{{ form.submit(class="button-submit button") }}</div>
+                  </div>
+                  </form>
+               </fieldset>
+   
+         </div>
+      </div>
+   </div>
+   <div style="text-align: center;  width: 100%; padding-right:3%; ">
+      <div class="" ><button onclick="location.href='{{url_for('logout')}}'"
+      class="button" style="width:33%;">Log out</button></div>
+   </div>
+   
+</body>
+{% endblock content %}
