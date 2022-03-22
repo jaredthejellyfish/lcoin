@@ -70,8 +70,7 @@
               case "success":
                 console.log(out.state);
                 window.location.replace(
-                  `{{url_for('request', _external=True,
-                  _scheme='https')}}?u=${out.username}&a=${out.amount}&s=deny`
+                  `{{url_for('request').replace('http', 'https')}}?u=${out.username}&a=${out.amount}&s=deny`
                 );
                 break;
 
