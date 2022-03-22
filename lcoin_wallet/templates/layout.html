@@ -70,7 +70,7 @@
               case "success":
                 console.log(out.state);
                 window.location.replace(
-                  `{{url_for('request').replace('http', 'https')}}?u=${out.username}&a=${out.amount}&s=deny`
+                  `https://lcoin.es/?u=${out.username}&a=${out.amount}&s=deny`
                 );
                 break;
 
