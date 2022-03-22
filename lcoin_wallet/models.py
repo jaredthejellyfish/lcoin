@@ -1,7 +1,7 @@
 from datetime import datetime
-from lcoin_wallet import db, login_manager
+from lcoin_wallet import db, login_manager, app
 from flask_login import UserMixin
-
+from itsdangerous import URLSafeTimedSerializer as Serializer
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -31,7 +31,7 @@ class User(db.Model, UserMixin):
 class Transaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
-    by = db.Column(db.String(20), db.ForeignKey('user.id'), nullable=False)
+    by = db.Column(db.String(20), db.ForeignKey('user.username'), nullable=False)
 
     to = db.Column(db.String(20), nullable=False)
 
