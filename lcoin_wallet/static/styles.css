@@ -120,7 +120,8 @@
 
 button span.text {
   padding: 12px;
-  font-size: 1.2em;
+  font-size: 100%;
+  white-space: nowrap;
 }
 
 .button-submit {
