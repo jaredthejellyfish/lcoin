@@ -236,19 +236,16 @@ def request():
         to_user = User.query.filter_by(username=form.to.data).first()
         if to_user:
             if current_user.username == to_user.username:
-                flash('You cannot send money to yourself!', 'danger')
-                return redirect(url_for('send'))
-            elif current_user.balance < form.amount.data:
-                flash('You don\'t have enough money to do that... :/', 'danger')
+                flash('You cannot request money from yourself!', 'danger')
                 return redirect(url_for('send'))
             else:
-                transaction = Request(by=current_user.username,
+                request = Request(by=current_user.username,
                                           to=form.to.data,
                                           amount=form.amount.data,
                                           concept=form.concept.data,
                                           active=True)
 
-                db.session.add(transaction)
+                db.session.add(request)
                 db.session.commit()
 
                 flash(
