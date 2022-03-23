@@ -1,6 +1,7 @@
 from datetime import datetime
 from lcoin_wallet import db, login_manager, app
 from flask_login import UserMixin
+
 from itsdangerous import URLSafeTimedSerializer as Serializer
 
 @login_manager.user_loader
@@ -23,6 +24,19 @@ class User(db.Model, UserMixin):
     balance = db.Column(db.Float, nullable=False, default=10)
 
     transactions = db.relationship('Transaction', backref='author', lazy=True)
+    
+    def get_reset_token(self):
+        s = Serializer(app.config['SECRET_KEY'],)
+        return s.dumps({'user_id': self.id})
+    
+    @staticmethod
+    def verify_reset_token(token, expires_sec=1800):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            user_id=s.loads(token, expires_sec)['user_id']
+        except:  
+            return None
+        return User.query.get(user_id)
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"

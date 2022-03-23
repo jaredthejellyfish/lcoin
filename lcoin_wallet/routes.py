@@ -3,9 +3,11 @@ import os
 import json
 from weakref import KeyedRef
 
-from lcoin_wallet import app, db, bcrypt
+from lcoin_wallet import app, db, bcrypt, mail
 from lcoin_wallet.models import Request, User, Transaction
-from lcoin_wallet.forms import RegistrationForm, LoginForm, UpdateAccountForm, SendMoneyForm, RequestMoneyFrom
+from lcoin_wallet.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
+                                SendMoneyForm, RequestMoneyFrom, RequestResetForm,
+                                ResetPasswordForm)
 
 from flask import render_template, url_for, flash, redirect, request, make_response
 import flask
@@ -18,16 +20,21 @@ from PIL import Image
 
 from lcoin_wallet.resize_image import resize_image
 
+from flask_mail import Message
+
+
 def check_if_pending(current_user):
     by_user = Request.query.filter_by(by=current_user.username, active=True)
     to_user = Request.query.filter_by(to=current_user.username, active=True)
 
     return [by_user.first() is not None, to_user.first() is not None], [by_user, to_user]
 
+
 def get_sent(current_user):
     sent = Transaction.query.filter_by(by=current_user.username)
 
     return sent
+
 
 def get_transactions(current_user):
     sent = []
@@ -37,15 +44,17 @@ def get_transactions(current_user):
     received_ = Transaction.query.filter_by(to=current_user.username)
 
     for transaction in sent_:
-        sent.append(["Sent",transaction.date, transaction.to, transaction.amount])
-    
-    for transaction in received_:
-        received.append(["Received", transaction.date, transaction.by, transaction.amount])
+        sent.append(["Sent", transaction.date,
+                    transaction.to, transaction.amount])
 
-    lists = sorted(sent + received, key=lambda x:x[1])
+    for transaction in received_:
+        received.append(["Received", transaction.date,
+                        transaction.by, transaction.amount])
+
+    lists = sorted(sent + received, key=lambda x: x[1])
 
     return lists
-     
+
 
 @app.route('/')
 @app.route('/home')
@@ -65,11 +74,10 @@ def home():
     image_file = url_for(
         'static', filename='profile_pics/' + current_user.image_file)
 
-    if len(transactions ) > 1:
+    if len(transactions) > 1:
         return render_template("index.html", title='Wallet', image_file=image_file, notification=notification, transactions=transactions[::-1])
     else:
         return render_template("index.html", title='Wallet', image_file=image_file, notification=notification, transactions=[])
-
 
 
 def save_picture(form_picture):
@@ -230,7 +238,7 @@ def request():
             return redirect(url_for('request'))
     except KeyError:
         pass
-    
+
     form = RequestMoneyFrom()
     if form.validate_on_submit():
         to_user = User.query.filter_by(username=form.to.data).first()
@@ -240,10 +248,10 @@ def request():
                 return redirect(url_for('request'))
             else:
                 request = Request(by=current_user.username,
-                                          to=form.to.data,
-                                          amount=form.amount.data,
-                                          concept=form.concept.data,
-                                          active=True)
+                                  to=form.to.data,
+                                  amount=form.amount.data,
+                                  concept=form.concept.data,
+                                  active=True)
 
                 db.session.add(request)
                 db.session.commit()
@@ -301,6 +309,7 @@ def accept_request():
         except:
             return api_response({"state": "error"})
 
+
 @app.route("/api/deny_request/", methods=["GET"])
 def deny_request():
 
@@ -319,3 +328,60 @@ def deny_request():
             return api_response({"state": "success", "amount": request.amount, "username": request.by})
         except:
             return api_response({"state": "error"})
+
+
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message('Password Reset Request',
+                  sender='noreply@lcoin.com',
+                  recipients=[user.email])
+    msg.body = f'''To reset your password visit the following link:
+{url_for('reset_token', token = token, _external=True)}
+    
+If you did not make this request simply ignore this email and no changes will be made.
+'''
+    mail.send(msg)
+
+@app.route('/reset_password',  methods=['GET', 'POST'])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+
+    form = RequestResetForm()
+
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash(
+            f'An email has been sent to {form.email.data} with instructions to reset your password!')
+        return redirect(url_for('login'))
+
+    return render_template("reset_request.html", title='Reset Password', form=form)
+
+
+@app.route('/reset_password/<token>',  methods=['GET', 'POST'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+
+    user = User.verify_reset_token(token)
+
+    if not user:
+        flash('That is an invalid or expired token.', 'warning')
+        return redirect(url_for('reset_request'))
+
+    form = ResetPasswordForm()
+
+    if form.validate_on_submit():
+        hashed_passoword = bcrypt.generate_password_hash(
+            form.password.data).decode('utf-8')
+
+        user.password = hashed_passoword
+
+        db.session.commit()
+
+        flash(
+            f'{user.username}, your password has been reset successfully!', 'success')
+        return redirect(url_for('home'))
+
+    return render_template("reset_token.html", title='Reset Password', form=form)
