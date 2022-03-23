@@ -237,7 +237,7 @@ def request():
         if to_user:
             if current_user.username == to_user.username:
                 flash('You cannot request money from yourself!', 'danger')
-                return redirect(url_for('send'))
+                return redirect(url_for('request'))
             else:
                 request = Request(by=current_user.username,
                                           to=form.to.data,
