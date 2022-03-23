@@ -81,7 +81,7 @@ def home():
 
 
 def save_picture(form_picture):
-    random_hex = secrets.token_hex(8)
+    random_hex = secrets.token_hex(7)
 
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
