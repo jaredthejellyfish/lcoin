@@ -1,7 +1,7 @@
 import secrets
 import os
 import json
-from weakref import KeyedRef
+from sqlalchemy import func
 
 from lcoin_wallet import app, db, bcrypt, mail
 from lcoin_wallet.models import Request, User, Transaction
@@ -110,7 +110,22 @@ def account():
             picture_file = save_picture(form.picture.data)
             current_user.image_file = picture_file
 
+
+        if current_user.username != form.username.data:
+            transactions_by = Transaction.query.filter_by(by=current_user.username)
+
+            for transaction in transactions_by:
+                transaction.by = form.username.data
+            
+            transactions_to = Transaction.query.filter_by(to=current_user.username)
+
+            for transaction in transactions_to:
+                transaction.to = form.username.data
+
+            db.session.commit()
+        
         current_user.username = form.username.data
+
         current_user.email = form.email.data
         db.session.commit()
 
@@ -133,11 +148,10 @@ def register():
         return redirect(url_for('home'))
 
     form = RegistrationForm()
-    new_user_exists = User.query.filter_by(
-        username=form.username.data, email=form.email.data).first()
+    new_user_exists = User.query.filter(func.lower(User.username) == func.lower(form.username.data), func.lower(User.email) == func.lower(form.email.data)).first()
     if new_user_exists:
         flash(
-            f'Welcome {form.username.data}! Looks like you are already registered, please log in!', 'success')
+            f'Welcome {new_user_exists.username}! Looks like you are already registered, please log in!', 'success')
         return redirect(url_for('login'))
 
     if form.validate_on_submit():
@@ -148,7 +162,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash(
-            f'Welcome {form.username.data}! You can now use your credentials to log in.', 'success')
+            f'Welcome {user.username}! You can now use your credentials to log in.', 'success')
         return redirect(url_for('home'))
 
     return render_template('register.html', title='Register', form=form)
@@ -161,9 +175,9 @@ def login():
 
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email_or_username.data).first()
+        user = User.query.filter(func.lower(User.username) == func.lower(form.email_or_username.data)).first()
         if not user:
-            user = User.query.filter_by(username=form.email_or_username.data).first()
+            user = User.query.filter(func.lower(User.email) == func.lower(form.email_or_username.data)).first()
             
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
@@ -195,7 +209,7 @@ def send():
 
     form = SendMoneyForm()
     if form.validate_on_submit():
-        to_user = User.query.filter_by(username=form.to.data).first()
+        to_user = User.query.filter(func.lower(User.username) == func.lower(form.to.data)).first()
         if to_user:
             if current_user.username == to_user.username:
                 flash('You cannot send money to yourself!', 'danger')
@@ -205,7 +219,7 @@ def send():
                 return redirect(url_for('send'))
             else:
                 transaction = Transaction(by=current_user.username,
-                                          to=form.to.data,
+                                          to=to_user.username,
                                           amount=form.amount.data,
                                           concept=form.concept.data)
 
@@ -216,12 +230,12 @@ def send():
                 db.session.commit()
 
                 flash(
-                    f'Succesfully sent ₺{form.amount.data} to {form.to.data}!', 'success')
+                    f'Succesfully sent ₺{form.amount.data} to {to_user.username}!', 'success')
                 return redirect(url_for('home'))
 
         else:
             flash(
-                f'{form.to.data} is not registered as a user in our database...', 'danger')
+                f'{to_user.username} is not registered as a user in our database...', 'danger')
             return redirect(url_for('send'))
 
     return render_template("send.html", title='Send', form=form, requests=transactions.all()[::-1])
@@ -244,14 +258,14 @@ def request():
 
     form = RequestMoneyFrom()
     if form.validate_on_submit():
-        to_user = User.query.filter_by(username=form.to.data).first()
+        to_user = User.query.filter(func.lower(User.username) == func.lower(form.to.data)).first()
         if to_user:
             if current_user.username == to_user.username:
                 flash('You cannot request money from yourself!', 'danger')
                 return redirect(url_for('request'))
             else:
                 request = Request(by=current_user.username,
-                                  to=form.to.data,
+                                  to=to_user.username,
                                   amount=form.amount.data,
                                   concept=form.concept.data,
                                   active=True)
@@ -260,7 +274,7 @@ def request():
                 db.session.commit()
 
                 flash(
-                    f'Succesfully sent a request for ₺{form.amount.data} to {form.to.data}!', 'success')
+                    f'Succesfully sent a request for ₺{form.amount.data} to {to_user.username}!', 'success')
                 return redirect(url_for('request'))
 
         else:

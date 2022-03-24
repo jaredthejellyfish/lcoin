@@ -54,8 +54,8 @@
             <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">{{transactions[0][2]}}</p>
          </div>
          <div class="flex-child" style="text-align: right; margin-bottom: 20px;">
-            <p class="bold_text" style="margin-right: 10%;">+ ₺{{transactions[0][3]}}</p>
-            <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">+ {{(0.000025 * (transactions[0][3] | float) | round(6))}} BTC</p>
+            <p class="bold_text" style="margin-right: 10%;">{{'-' if transactions[0][0] == 'Sent' else '+'}} ₺{{transactions[0][3]}}</p>
+            <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">{{'-' if transactions[0][0] == 'Sent' else '+'}} {{(0.000025 * (transactions[0][3] | float) | round(6))}} BTC</p>
          </div>
       </div>
       {% if transactions | length > 1 %}
@@ -66,8 +66,8 @@
             <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">{{transactions[1][2]}}</p>
          </div>
          <div class="flex-child" style="text-align: right; margin-bottom: 20px;">
-            <p class="bold_text" style="margin-right: 10%;">+ ₺{{transactions[1][3]}}</p>
-            <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">+ {{(0.000025 * (transactions[1][3] | float) | round(6))}} BTC</p>
+            <p class="bold_text" style="margin-right: 10%;">{{'-' if transactions[1][0] == 'Sent' else '+'}} ₺{{transactions[1][3]}}</p>
+            <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">{{'-' if transactions[1][0] == 'Sent' else '+'}} {{(0.000025 * (transactions[1][3] | float) | round(6))}} BTC</p>
          </div>
       </div>
       {% if transactions | length > 2 %}
@@ -78,8 +78,8 @@
             <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">{{transactions[2][2]}}</p>
          </div>
          <div class="flex-child" style="text-align: right; margin-bottom: 20px;">
-            <p class="bold_text" style="margin-right: 10%;">+ ₺{{transactions[2][3]}}</p>
-            <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">+ {{(0.000025 * (transactions[1][3] | float) | round(6))}} BTC</p>
+            <p class="bold_text" style="margin-right: 10%;">{{'-' if transactions[2][0] == 'Sent' else '+'}} ₺{{transactions[2][3]}}</p>
+            <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">{{'-' if transactions[2][0] == 'Sent' else '+'}} {{(0.000025 * (transactions[1][3] | float) | round(6))}} BTC</p>
          </div>
       </div>
       {% if transactions | length > 3 %}
@@ -90,8 +90,8 @@
             <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">{{transactions[3][2]}}</p>
          </div>
          <div class="flex-child" style="text-align: right; margin-bottom: 20px;">
-            <p class="bold_text" style="margin-right: 10%;">+ ₺{{transactions[3][3]}}</p>
-            <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">+ {{(0.000025 * (transactions[1][3] | float) | round(6))}} BTC</p>
+            <p class="bold_text" style="margin-right: 10%;">{{'-' if transactions[3][0] == 'Sent' else '+'}} ₺{{transactions[3][3]}}</p>
+            <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">{{'-' if transactions[3][0] == 'Sent' else '+'}} {{(0.000025 * (transactions[1][3] | float) | round(6))}} BTC</p>
          </div>
       </div>
       {% if transactions | length > 4 %}
@@ -102,8 +102,8 @@
             <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">{{transactions[4][2]}}</p>
          </div>
          <div class="flex-child" style="text-align: right; margin-bottom: 20px;">
-            <p class="bold_text" style="margin-right: 10%;">+ ₺{{transactions[3][3]}}</p>
-            <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">+ {{(0.000025 * (transactions[1][3] | float) | round(6))}} BTC</p>
+            <p class="bold_text" style="margin-right: 10%;">{{'-' if transactions[4][0] == 'Sent' else '+'}} ₺{{transactions[3][3]}}</p>
+            <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">{{'-' if transactions[4][0] == 'Sent' else '+'}} {{(0.000025 * (transactions[1][3] | float) | round(6))}} BTC</p>
          </div>
       </div>
       {% endif %}

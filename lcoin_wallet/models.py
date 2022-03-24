@@ -22,8 +22,6 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
 
     balance = db.Column(db.Float, nullable=False, default=10)
-
-    transactions = db.relationship('Transaction', backref='author', lazy=True)
     
     def get_reset_token(self):
         s = Serializer(app.config['SECRET_KEY'],)
@@ -45,7 +43,7 @@ class User(db.Model, UserMixin):
 class Transaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
-    by = db.Column(db.String(20), db.ForeignKey('user.username'), nullable=False)
+    by = db.Column(db.String(20), nullable=False)
 
     to = db.Column(db.String(20), nullable=False)
 
