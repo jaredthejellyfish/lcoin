@@ -8,33 +8,38 @@
               <form method="POST" action="" enctype="multipart/form-data">
                   {{ form.hidden_tag() }}
 
-                  <div class="form-group">
-                      {{ form.password.label(class="dark-text-form") }}
-                      {% if form.password.errors %}
-                      {{ form.password(class="form-control form-control-lg is-invalid") }}
-                      <div class="invalid-feedback">
-                          {% for error in form.password.errors %}
-                          <span class="error-text">{{ error }}</span>
-                          {% endfor %}
-                      </div>
-                      {% else %}
-                      {{ form.password(class="form-control form-control-lg") }}
-                      {% endif %}
-                  </div>
-
-                  <div class="form-group">
+                  <div class="form-group" style="position: relative">
+                    {{ form.password.label(class="dark-text-form") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                          <i class="far fa-eye eyeButton" id="togglePassword"></i>
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span class="error-text">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-password form-control form-control-lg", id="password") }}
+  
+                          <i class="far fa-eye eyeButton" id="togglePassword"></i>
+  
+                    {% endif %}
+                </div>
+                 <div class="form-group">
                     {{ form.confirm_password.label(class="dark-text-form") }}
                     {% if form.confirm_password.errors %}
                     {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
-                        {% for error in form.confirm_password.errors %}
-                        <span class="error-text">{{ error }}</span>
-                        {% endfor %}
+                       {% for error in form.confirm_password.errors %}
+                       <span class="error-text">{{ error }}</span>
+                       {% endfor %}
                     </div>
                     {% else %}
                     {{ form.confirm_password(class="form-control form-control-lg") }}
                     {% endif %}
-                </div>
+                    <script type = "text/javascript" src="{{url_for(
+                       'static', filename='password-eye.js')}}"></script>  
+                 </div>
 
                 </div>
                 <div class="separator"></div>

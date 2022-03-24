@@ -232,3 +232,11 @@ input[type="file"] {
   color: #f9a241;
   font-size: 0.7em;
 }
+
+.eyeButton {
+  position: absolute;
+  right: 5%;
+  bottom: 0px;
+  top: 45px;
+  color: #f9a241;
+}
