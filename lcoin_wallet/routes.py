@@ -235,7 +235,7 @@ def send():
 
         else:
             flash(
-                f'{to_user.username} is not registered as a user in our database...', 'danger')
+                f'{form.to.data} is not registered as a user in our database...', 'danger')
             return redirect(url_for('send'))
 
     return render_template("send.html", title='Send', form=form, requests=transactions.all()[::-1])
