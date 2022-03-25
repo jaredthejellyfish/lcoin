@@ -248,7 +248,10 @@ def request():
     args = flask.request.args.to_dict()
 
     try:
-        if args["u"] and args['a'] and args['s'] == 'accept':
+        if args['s'] == 'error':
+            flash(f'Error processing your request, the user does not have enough funds...', 'danger')
+            return redirect(url_for('request'))
+        elif args["u"] and args['a'] and args['s'] == 'accept':
             flash(f'Succesfully sent ₺{args["a"]} to {args["u"]}!', 'success')
             return redirect(url_for('request'))
         elif args["u"] and args['a'] and args['s'] == 'deny':

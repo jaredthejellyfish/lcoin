@@ -55,7 +55,9 @@
 
               case "error":
                 console.log(out.state);
-                location.reload();
+                window.location.replace(
+                  `{{url_for('request')}}?s=error`
+                );
                 break;
 
               default:
