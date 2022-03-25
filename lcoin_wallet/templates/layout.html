@@ -47,14 +47,12 @@
           .then((out) => {
             switch (out.state) {
               case "success":
-                console.log(out.state);
                 window.location.replace(
                   `{{url_for('request')}}?u=${out.username}&a=${out.amount}&s=accept`
                 );
                 break;
 
               case "error":
-                console.log(out.state);
                 window.location.replace(
                   `{{url_for('request')}}?s=error`
                 );
@@ -77,14 +75,12 @@
           .then((out) => {
             switch (out.state) {
               case "success":
-                console.log(out.state);
                 window.location.replace(
                   `{{url_for('request')}}?u=${out.username}&a=${out.amount}&s=deny`
                 );
                 break;
 
               case "error":
-                console.log(out.state);
                 location.reload();
                 break;
 
