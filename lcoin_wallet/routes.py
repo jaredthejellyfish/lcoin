@@ -297,8 +297,6 @@ def api_response(json_data: dict):
 @app.route("/api/accept_request/", methods=["GET"])
 def accept_request():
 
-    # Make a js function that takes input from a button, makes the api call, and then reloads the page!
-
     args = flask.request.args.to_dict()
 
     if args["key"]:
@@ -307,6 +305,9 @@ def accept_request():
 
             to = User.query.filter_by(username=request.to).first()
             by = User.query.filter_by(username=request.by).first()
+            
+            if to.balance < request.amount:
+                return api_response({"state": "error"})
 
             transaction = Transaction(by=request.to,
                                       to=request.by,
