@@ -1,3 +1,4 @@
+import re
 import secrets
 import os
 import json
@@ -303,8 +304,8 @@ def accept_request():
         try:
             request = Request.query.filter_by(id=args["key"]).first()
 
-            to = User.query.filter_by(username=request.to).first()
-            by = User.query.filter_by(username=request.by).first()
+            to = User.query.filter(func.lower(User.username) == func.lower(request.to)).first()
+            by = User.query.filter(func.lower(User.username) == func.lower(request.by)).first()
             
             if to.balance < request.amount:
                 return api_response({"state": "error"})
