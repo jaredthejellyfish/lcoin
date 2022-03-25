@@ -311,6 +311,8 @@ def accept_request():
             by = User.query.filter(func.lower(User.username) == func.lower(request.by)).first()
             
             if to.balance < request.amount:
+                request.active = False
+                db.session.commit()
                 return api_response({"state": "error"})
 
             transaction = Transaction(by=request.to,
