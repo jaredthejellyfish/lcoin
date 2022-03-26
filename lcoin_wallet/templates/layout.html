@@ -37,20 +37,16 @@
       href="{{ url_for('static', filename='/images/favicon.ico') }}"
     />
 
-    <script>
-      window.setTimeout(function () {
-        $(".alert")
-          .fadeTo(500, 0)
-          .slideUp(500, function () {
-            $(this).remove();
-          });
-      }, 5000);
-    </script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='/javascript/close-alert.js') }}"
+    ></script>
 
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='/javascript/api-accept.js') }}"
     ></script>
+    
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='/javascript/api-deny.js') }}"
