@@ -125,7 +125,8 @@ $(function() {
   },
   { 
     action: 'type',
-    strings: ["These are not the error codes you're looking for.", 'Please either report this error to an administrator or return back and forget you were here...'],
+    strings: ["These are not the error codes you're looking for.", 'Please either report this error to an administrator or return back and forget you were here.'],
+    output: '<span class="gray">  Feel free to send an email to <a href = "mailto: issues@lcoin.com" class="link">issues@lcoin.com</a> detailing the events that led to seeing this page.</><br>&nbsp;',
     postDelay: 2000
   }
   
