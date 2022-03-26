@@ -114,13 +114,13 @@ $(function() {
     {
       action: 'type',
       strings: ["Accessing restricted files.."],
-      output: 'grabbing files..<br><br>',
+      output: '<span class="gray">  Grabbing files....<br><br>',
       postDelay: 1000
     },
   { 
     action: 'type',
     strings: ["500 Internal Error"],
-    output: '<span class="gray">This may be a big issue...</><br>&nbsp;',
+    output: `<span class="gray">  ${error}</><br><br>&nbsp;`,
     postDelay: 1000
   },
   { 

@@ -413,4 +413,5 @@ def reset_token(token):
 
 @app.route('/error_500')
 def error_500():
-    return render_template("500.html", title='Reset Password')
+    error = "Internal server error has been detected...Internal server error has been detected...Internal server"
+    return render_template("500.html", e=error)

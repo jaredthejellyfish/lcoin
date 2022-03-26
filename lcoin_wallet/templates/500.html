@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    
     <meta charset="UTF-8" />
     <title>500 Error</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='/css/500.css') }}"
     />
+
+    <script type="text/javascript">
+      var error = '{{e}}'
+    </script>
+
   </head>
   <body>
     <!-- partial:index.partial.html -->
