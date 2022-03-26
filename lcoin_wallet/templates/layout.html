@@ -9,7 +9,7 @@
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
     />
-    
+
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
@@ -34,8 +34,9 @@
 
     <link
       rel="shortcut icon"
-      href="{{ url_for('static', filename='favicon.ico') }}"
+      href="{{ url_for('static', filename='/images/favicon.ico') }}"
     />
+
     <script>
       window.setTimeout(function () {
         $(".alert")
@@ -45,60 +46,16 @@
           });
       }, 5000);
     </script>
-    <script>
-      function make_api_accept_call(key) {
-        const url = `/api/accept_request?key=${key}`;
-        fetch(url)
-          .then((res) => res.json())
-          .then((out) => {
-            switch (out.state) {
-              case "success":
-                window.location.replace(
-                  `{{url_for('request')}}?u=${out.username}&a=${out.amount}&s=accept`
-                );
-                break;
 
-              case "error":
-                window.location.replace(
-                  `{{url_for('request')}}?s=error`
-                );
-                break;
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='/javascript/api-accept.js') }}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='/javascript/api-deny.js') }}"
+    ></script>
 
-              default:
-                throw "Invalid response!";
-            }
-          })
-          .catch((err) => {
-            throw err;
-          });
-      }
-    </script>
-    <script>
-      function make_api_deny_call(key) {
-        const url = `/api/deny_request?key=${key}`;
-        fetch(url)
-          .then((res) => res.json())
-          .then((out) => {
-            switch (out.state) {
-              case "success":
-                window.location.replace(
-                  `{{url_for('request')}}?u=${out.username}&a=${out.amount}&s=deny`
-                );
-                break;
-
-              case "error":
-                location.reload();
-                break;
-
-              default:
-                throw "Invalid response!";
-            }
-          })
-          .catch((err) => {
-            throw err;
-          });
-      }
-    </script>
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
