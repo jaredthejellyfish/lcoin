@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
     <meta charset="UTF-8" />
     <title>500 Error</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='/css/500.css') }}"
     />
 
     <script type="text/javascript">
-      var error = '{{e}}'
+      var error = "{{e}}";
     </script>
-
   </head>
   <body>
     <!-- partial:index.partial.html -->
@@ -66,9 +67,8 @@
     <script src="https://www.mattboldt.com/demos/typed-js/js/typed.custom.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script
-    type="text/javascript"
-    src="{{ url_for('static', filename='/javascript/error-500.js') }}"
-  ></script>
-
+      type="text/javascript"
+      src="{{ url_for('static', filename='/javascript/error-500.js') }}"
+    ></script>
   </body>
 </html>
