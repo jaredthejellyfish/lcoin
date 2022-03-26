@@ -6,7 +6,7 @@ function make_api_deny_call(key) {
       switch (out.state) {
         case "success":
           window.location.replace(
-            `{{url_for('request')}}?u=${out.username}&a=${out.amount}&s=deny`
+            `${url_request}?u=${out.username}&a=${out.amount}&s=deny`
           );
           break;
 
