@@ -77,8 +77,8 @@
          <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
             <table class="button-holder" style="position:absolute; right:4%;">
                <tr>
-                  <td><button onclick="make_api_accept_call({{requests[0].id}})" class="button-request"><span class="text">Accept</a></span></button></td>
-                  <td><button onclick="make_api_deny_call({{requests[0].id}})" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+                  <td><button onclick="make_api_accept_call('{{requests[0].id}}', '{{url_for('request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call('{{requests[0].id}}', '{{url_for('request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
                </tr>
             </table>
          </div>
@@ -94,12 +94,13 @@
          <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
             <table class="button-holder" style="position:absolute; right:4%;">
                <tr>
-                  <td><button onclick="make_api_accept_call({{requests[1].id}})" class="button-request"><span class="text">Accept</a></span></button></td>
-                  <td><button onclick="make_api_deny_call({{requests[1].id}})" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+                  <td><button onclick="make_api_accept_call('{{requests[1].id}}', '{{url_for('request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call('{{requests[1].id}}', '{{url_for('request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
                </tr>
             </table>
          </div>
       </div>
+      
       
       {% if requests | length > 2 %}
       <hr class="dashed" style="margin-top: 10px; opacity: 0.5;">
@@ -111,8 +112,8 @@
          <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
             <table class="button-holder" style="position:absolute; right:4%;">
                <tr>
-                  <td><button onclick="make_api_accept_call({{requests[2].id}})" class="button-request"><span class="text">Accept</a></span></button></td>
-                  <td><button onclick="make_api_deny_call({{requests[2].id}})" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+                  <td><button onclick="make_api_accept_call('{{requests[2].id}}', '{{url_for('request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call('{{requests[2].id}}', '{{url_for('request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
                </tr>
             </table>
          </div>
@@ -128,8 +129,8 @@
          <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
             <table class="button-holder" style="position:absolute; right:4%;">
                <tr>
-                  <td><button onclick="make_api_accept_call({{requests[3].id}})" class="button-request"><span class="text">Accept</a></span></button></td>
-                  <td><button onclick="make_api_deny_call({{requests[3].id}})" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+                  <td><button onclick="make_api_accept_call('{{requests[3].id}}', '{{url_for('request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call('{{requests[3].id}}', '{{url_for('request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
                </tr>
             </table>
          </div>
@@ -145,8 +146,8 @@
          <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
             <table class="button-holder" style="position:absolute; right:4%;">
                <tr>
-                  <td><button onclick="make_api_accept_call({{requests[4].id}})" class="button-request"><span class="text">Accept</a></span></button></td>
-                  <td><button onclick="make_api_deny_call({{requests[4].id}})" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+                  <td><button onclick="make_api_accept_call('{{requests[4].id}}', '{{url_for('request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call('{{requests[4].id}}', '{{url_for('request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
                </tr>
             </table>
          </div>
