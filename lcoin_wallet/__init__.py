@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
-from lcoin_wallet.error_handlers import page_not_found
+from lcoin_wallet.error_handlers import page_not_found, internal_server_error
 
 from flask_minify import Minify
 
@@ -41,6 +41,7 @@ else:
 mail = Mail(app)
 
 app.register_error_handler(404, page_not_found)
+app.register_error_handler(500, internal_server_error)
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)

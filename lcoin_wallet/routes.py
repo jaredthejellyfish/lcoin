@@ -409,3 +409,8 @@ def reset_token(token):
         return redirect(url_for('home'))
 
     return render_template("reset_token.html", title='Reset Password', form=form)
+
+
+@app.route('/error_500')
+def error_500():
+    return render_template("500.html", title='Reset Password')
