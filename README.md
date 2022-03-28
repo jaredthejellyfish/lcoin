@@ -134,7 +134,7 @@ _Below are the instructions needed to run your own local copy of LCoin._
    ```
 <br>
 
-3. Get a one application specific password for your gooogle account *(For Gmail users only)*
+4. Get an application specific password for your gooogle account *(For Gmail users only)*
     - Navigate to: https://myaccount.google.com/security 
     - Select `App passwords`
     - On `Select app` select `Mail`
@@ -143,7 +143,7 @@ _Below are the instructions needed to run your own local copy of LCoin._
 
 <br>
 
-4. Enter the following details in `config.ini`
+5. Enter the following details in `config.ini` _(replace values in quotes with your own)_
    ```ini
     [SERVER]
     SECRET_KEY = "secret key"
@@ -156,7 +156,7 @@ _Below are the instructions needed to run your own local copy of LCoin._
 
 <br>
 
-5. To start the program run:
+6. To start the program run:
    ```sh
    python3 run.py
    ```
