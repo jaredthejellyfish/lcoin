@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+      <meta http-equiv="Pragma" content="no-cache">
+      <meta http-equiv="Expires" content="0">
+      <link rel="stylesheet" href="styles.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <script type="text/javascript" src="/static//javascript/close-alert.js"></script><script type="text/javascript" src="/static//javascript/api-accept.js"></script><script type="text/javascript" src="/static//javascript/api-deny.js"></script>
+      <title>Account</title>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <body class="background">
+      <div class="flex-container">
+         <div class="flex-child" style="margin-left: 3%;">
+            <p class="wallet" style="margin-bottom:40px; margin-top:40px;">Account</p>
+         </div>
+         <div class="flex-child" style="text-align:right; margin-right: 10%;">
+            <p class="done" style="margin-bottom:40px;"><a href="index.html" style="color: #f9a241;">⨉</a></p>
+         </div>
+      </div>
+      <div class="wallet-holder">
+         <div class="flex-container">
+            <div class="flex-child" style="width: 50px; margin-left: 3%; padding-top: 5px; padding-bottom: 10px;"> <img class="round_icon float-left" src="images/default.jpeg" width="60" height="60"> </div>
+            <div class="flex-child">
+               <p class="bold_text" style="font-size: 170%">jaredthejellyfish</p>
+               <p class="subtext" style="font-size: 75%; padding-top: 10px; padding-bottom: 10px;"> ger.almenara@gmail.com</a> </p>
+            </div>
+         </div>
+      </div>
+      <p class="dark-text" style="font-size: 90%; margin-left: 5%; margin-top: 35px; margin-bottom: 40px;">Update Account </p>
+      <fieldset class="form-group">
+         <div class="wallet-holder">
+            <div class="form-container">
+               <form method="POST" action enctype="multipart/form-data">
+                  <input id="csrf_token" name="csrf_token" type="hidden" value="ImZhZjI1YTE4MzViNGE1MjY1NDk5MmE4YWVlNzZlNjliN2JmZmU1MGYi.YkIc2g.zdmQYlgPl85mgCCIMrlOD7f7MVU"> 
+                  <div class="form-group"> <label class="dark-text-form-top" for="username">Username</label> <input class="form-control form-control-lg" id="username" maxlength="20" minlength="2" name="username" required type="text" value="jaredthejellyfish"> </div>
+                  <div class="form-group"> <label class="dark-text-form" for="email">Email</label> <input class="form-control form-control-lg" id="email" name="email" required type="text" value="ger.almenara@gmail.com"> </div>
+                  <div class="form-group"> <label class="dark-text-form" for="picture">Update Profile Picture</label> <input class="dark-text-form-file " id="picture" name="picture" type="file"> </div>
+                  <div style="text-align: center;  margin-bottom: -10px; margin-top: -30px; width: 100%;  ">
+                     <div class="form-group"><input class="button-submit button" id="submit" name="submit" type="submit" value="Update"></div>
+                  </div>
+               </form>
+      </fieldset>
+      </div> </div> </div> 
+      <div style="text-align: center;  width: 100%; padding-right:3%; ">
+         <div class><button onclick="location.href='/logout'" class="button" style="width:33%;">Log out</button></div>
+      </div>
+      <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+   </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+      <meta http-equiv="Pragma" content="no-cache">
+      <meta http-equiv="Expires" content="0">
+      <link rel="stylesheet" href="styles.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <script type="text/javascript" src="/static//javascript/close-alert.js"></script><script type="text/javascript" src="/static//javascript/api-accept.js"></script><script type="text/javascript" src="/static//javascript/api-deny.js"></script>
+      <title>Request</title>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <body class="background">
+      <div class="flex-container">
+         <div class="flex-child" style="margin-left: 3%;">
+            <p class="wallet" style="margin-bottom:40px; margin-top:40px;">Request</p>
+         </div>
+         <div class="flex-child" style="text-align:right; margin-right: 10%;">
+            <p class="done" style="margin-bottom:40px;"><a href="index.html" style="color: #f9a241;">⨉</a></p>
+         </div>
+      </div>
+      <div class="wallet-holder">
+         <div name="request_maker" class="flex-container" style="margin-top: -20px; padding-left: 4%; position:relative;">
+            <div class="flex-child">
+               <fieldset class="form-group">
+                  <div class="form-container" style="margin-left: 0;">
+                     <form method="POST" action enctype="multipart/form-data">
+                        <input id="csrf_token" name="csrf_token" type="hidden" value="ImZhZjI1YTE4MzViNGE1MjY1NDk5MmE4YWVlNzZlNjliN2JmZmU1MGYi.YkIcdw.XQTSblPHkjQiKn3K_X8ri9gI7FY"> 
+                        <div class="form-group"> <label class="dark-text-form" for="to">Username</label> <input class="form-control form-control-lg" id="to" maxlength="20" minlength="2" name="to" required type="text" value> </div>
+                        <div class="form-group"> <label class="dark-text-form" for="amount">Amount</label> <input class="form-password form-control form-control-lg" id="amount" name="amount" required type="text" value> </div>
+                        <div class="form-group"> <label class="dark-text-form " for="concept">Concept</label> <textarea class="textarea" id="concept" maxlength="241" name="concept"></textarea> </div>
+                        <div style="width: 100%; text-align:center; margin-top:-15px; margin-bottom: -25px;">
+                           <div class="form-group"><input class="button-submit button" id="submit" name="submit" type="submit" value="Send"></div>
+                        </div>
+                     </form>
+                  </div>
+               </fieldset>
+            </div>
+         </div>
+      </div>
+      <p class="dark-text" style="font-size: 90%; margin-left: 5%; margin-top: 35px; margin-bottom: 40px;">Requests</p>
+      <div class="wallet-holder">
+         <p class="dark-text" style="font-size: 90%; padding-left: 3%; padding-top: 15px; padding-bottom: 10px;">Pending</p>
+         <div name="transaction" class="flex-container" style="margin-top: -20px; padding-left: 4%; position:relative;">
+            <div class="flex-child">
+               <p class="bold_text" style="margin-left: 0;">kalechips</p>
+               <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">- ₺0.35</p>
+            </div>
+            <div class="flex-child" style=" margin-bottom: 20px; margin-top: 25px;">
+               <table class="button-holder" style="position:absolute; right:4%;">
+                  <tr>
+                     <td><button onclick="make_api_accept_call('3', '/request')" class="button-request"><span class="text">Accept</a></span></button></td>
+                     <td><button onclick="make_api_deny_call('3', '/request')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div class="separator"></div>
+      </div>
+   </body>
+</html>

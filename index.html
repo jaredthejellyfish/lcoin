@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+      <meta http-equiv="Pragma" content="no-cache">
+      <meta http-equiv="Expires" content="0">
+      <link rel="stylesheet" href="styles.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <title>Wallet</title>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <body class="background">
+      <p class="wallet" , style="margin-bottom:40px; margin-top:40px;">Wallet</p>
+      <div class="wallet-holder">
+         <div class="flex-container">
+            <div class="flex-child">
+               <p class="bold_text" style="font-size: 170%">₺10.0</p>
+               <p class="subtext" style="font-size: 75%; padding-top: 10px; padding-bottom: 3px;">0.0025 BTC</p>
+            </div>
+            <div class="flex-child" style="text-align: right; margin-top: 12px"> <img class="lcoin_icon" src="images/default.jpeg" width="40" height="40"> </div>
+         </div>
+         <table class="button-holder" style="margin-left: 4%;">
+            <tr>
+               <td><button onclick="location.href='send.html'" class="button"><span class="text">↑ Send</a></span></button></td>
+               <td><button onclick="location.href='request.html'" class="button None" data-badge style="margin-left: 20px;"><span class="text">↓ Request</span></button></td>
+               <td><button onclick="location.href='account.html'" class="button" style="margin-left: 20px;"><span class="text">⚙ </span></button></td>
+            </tr>
+         </table>
+         <div class="flex-container">
+            <div class="flex-child">
+               <p class="dark-text" style="font-size: 90%; margin-left: 8%;">Holdings:</p>
+            </div>
+            <div class="flex-child" style="text-align: right"> </div>
+         </div>
+         <div class="flex-container">
+            <div class style="margin-left: 4%;"> <img class="round_icon" style="margin-left: 3%;" src="images/l-coin-logo.png" width="55" height="55"> </div>
+            <div class="flex-child" style="margin-left: 20px;">
+               <p class="bold_text" style="margin-left: 0;">Learn Coin</p>
+               <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">LCC</p>
+            </div>
+            <div class="flex-child" style="text-align: right; margin-bottom: 20px;">
+               <p class="bold_text" style="margin-right: 10%;">₺10.0</p>
+               <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">0.0025 BTC</p>
+            </div>
+         </div>
+      </div>
+      <p class="dark-text" style="font-size: 90%; margin-left: 5%; margin-top: 35px; margin-bottom: 40px;">Transactions</p>
+      <div class="wallet-holder">
+         <p class="dark-text" style="font-size: 90%; padding-left: 4%; padding-top: 15px; padding-bottom: 5px;">Completed</p>
+         <div name="transaction" class="flex-container" style="margin-top: -20px; padding-left: 4%;">
+            <div class="flex-child">
+               <p class="bold_text" style="margin-left: 0;">Received</p>
+               <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">kalechips</p>
+            </div>
+            <div class="flex-child" style="text-align: right; margin-bottom: 20px;">
+               <p class="bold_text" style="margin-right: 10%;">+ ₺1.0</p>
+               <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">+ 0.00025 BTC</p>
+            </div>
+         </div>
+         <hr class="dashed">
+         <div name="transaction" class="flex-container" style="margin-top: -20px; padding-left: 4%;">
+            <div class="flex-child">
+               <p class="bold_text" style="margin-left: 0;">Sent</p>
+               <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">kalechips</p>
+            </div>
+            <div class="flex-child" style="text-align: right; margin-bottom: 20px;">
+               <p class="bold_text" style="margin-right: 10%;">- ₺0.5</p>
+               <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">- 0.000125 BTC</p>
+            </div>
+         </div>
+         <hr class="dashed">
+         <div name="transaction" class="flex-container" style="margin-top: -20px; padding-left: 4%;">
+            <div class="flex-child">
+               <p class="bold_text" style="margin-left: 0;">Sent</p>
+               <p class="dark-text" style="margin-top: -10px; margin-left: 0; font-size: 80%;">kalechips</p>
+            </div>
+            <div class="flex-child" style="text-align: right; margin-bottom: 20px;">
+               <p class="bold_text" style="margin-right: 10%;">- ₺0.5</p>
+               <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">- 0.000125 BTC</p>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
