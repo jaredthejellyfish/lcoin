@@ -21,7 +21,7 @@
   <p align="center">
     Currency system written in Python
     <br />
-    <a href="https://lcoin.es/">View Live</a>
+    <a href="https://demo.lcoin.es/">View Demo</a>
     ·
     <a href="https://github.com/jarredthejellyfish/lcoin-wallet/issues">Report Bug</a>
     ·
