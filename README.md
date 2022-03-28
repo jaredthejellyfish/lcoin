@@ -20,7 +20,7 @@
   <h3 align="center">LCoin Wallet</h3>
 
   <p align="center">
-    Currency system written in Flask
+    Currency system written in Python
     <br />
     <a href="https://lcoin.es/">View Live</a>
     ·
