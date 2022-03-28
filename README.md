@@ -231,8 +231,6 @@ Project Link: [https://github.com/jarredthejellyfish/lcoin-wallet](https://githu
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
 * [Choose an Open Source License](https://choosealicense.com)
 * [Corey Schafer](https://www.youtube.com/c/Coreyms)
 * [Img Shields](https://shields.io)
