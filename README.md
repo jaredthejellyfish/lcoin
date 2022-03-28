@@ -98,7 +98,7 @@ These are the major frameworks/libraries used to build the project.
 
 <!-- GETTING STARTED -->
 ## Getting Started
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple steps.
 
 <br>
 
