@@ -61,7 +61,7 @@
 
 <!-- [![Home Screen Shot][home-screenshot]](https://lcoin.es/) -->
 
-After a very miserable trial run of a physical currency a for the Learnlife marketplace I identified the need to use a more scalable alternative.
+After a very miserable trial run of a physical currency for the Learnlife marketplace I identified the need to use a more scalable alternative.
 That is why I came up with LearnCoin (LCoin), a scalable centralized currency system written in Python 3, HTML, and JavaScript.
 
 The current system supports:
