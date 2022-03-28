@@ -377,7 +377,7 @@ def reset_request():
         user = User.query.filter_by(email=form.email.data).first()
         send_reset_email(user)
         flash(
-            f'An email has been sent to {form.email.data} with instructions to reset your password!')
+            f'An email has been sent to {form.email.data} with instructions to reset your password!', 'success')
         return redirect(url_for('login'))
 
     return render_template("reset_request.html", title='Reset Password', form=form)
