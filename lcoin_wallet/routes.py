@@ -336,9 +336,6 @@ def accept_request():
 
 @app.route("/api/deny_request/", methods=["GET"])
 def deny_request():
-
-    # Make a js function that takes input from a button, makes the api call, and then reloads the page!
-
     args = flask.request.args.to_dict()
 
     if args["key"]:
