@@ -2,3 +2,4 @@ venv*
 __p*
 .*
 *.ini
+**/**/profile_pics/
