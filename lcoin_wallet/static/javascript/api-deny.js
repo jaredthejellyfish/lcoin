@@ -1,4 +1,4 @@
-function make_api_deny_call(key) {
+function make_api_deny_call(key, url_request) {
   const url = `/api/deny_request?key=${key}`;
   fetch(url)
     .then((res) => res.json())
