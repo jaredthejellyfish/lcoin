@@ -11,7 +11,7 @@ function make_api_deny_call(key) {
           break;
 
         case "error":
-          location.reload();
+          window.location.replace(`${url_request}?s=error`);
           break;
 
         default:
