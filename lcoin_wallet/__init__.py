@@ -29,7 +29,7 @@ if os.path.exists(os.getcwd() + '/lcoin_wallet/config.ini'):
 
 else:
     app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI")
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL").replace("postgres", "postgresql")
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
