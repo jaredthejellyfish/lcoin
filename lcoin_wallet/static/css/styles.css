@@ -164,6 +164,7 @@ input[type="text"] {
   box-sizing: border-box;
   background-color: #000000;
   resize: none;
+  color: white;
   border-radius: 10px;
   border: 0px;
   margin-left: -1%;
