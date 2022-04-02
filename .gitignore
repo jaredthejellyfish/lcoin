@@ -3,3 +3,5 @@ __p*
 .*
 *.ini
 **/**/profile_pics/
+*.db
+test*
