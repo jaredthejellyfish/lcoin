@@ -6,7 +6,7 @@
          <p class="wallet" style="margin-bottom:40px; margin-top:40px;">Request</p>
       </div>
       <div class="flex-child" style="text-align:right; margin-right: 10%;">
-         <p class="done" style="margin-bottom:40px;"><a href="{{url_for('home')}}" style="color: #f9a241;">⨉</a></p>
+         <p class="done" style="margin-bottom:40px;"><a href="{{url_for('main.home')}}" style="color: #f9a241;">⨉</a></p>
       </div>
    </div>
    <div class="wallet-holder">
@@ -77,8 +77,8 @@
          <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
             <table class="button-holder" style="position:absolute; right:4%;">
                <tr>
-                  <td><button onclick="make_api_accept_call('{{requests[0].id}}', '{{url_for('request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
-                  <td><button onclick="make_api_deny_call('{{requests[0].id}}', '{{url_for('request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+                  <td><button onclick="make_api_accept_call('{{requests[0].id}}', '{{url_for('transactions.request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call('{{requests[0].id}}', '{{url_for('transactions.request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
                </tr>
             </table>
          </div>
@@ -94,8 +94,8 @@
          <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
             <table class="button-holder" style="position:absolute; right:4%;">
                <tr>
-                  <td><button onclick="make_api_accept_call('{{requests[1].id}}', '{{url_for('request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
-                  <td><button onclick="make_api_deny_call('{{requests[1].id}}', '{{url_for('request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+                  <td><button onclick="make_api_accept_call('{{requests[1].id}}', '{{url_for('transactions.request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call('{{requests[1].id}}', '{{url_for('transactions.request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
                </tr>
             </table>
          </div>
@@ -112,8 +112,8 @@
          <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
             <table class="button-holder" style="position:absolute; right:4%;">
                <tr>
-                  <td><button onclick="make_api_accept_call('{{requests[2].id}}', '{{url_for('request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
-                  <td><button onclick="make_api_deny_call('{{requests[2].id}}', '{{url_for('request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+                  <td><button onclick="make_api_accept_call('{{requests[2].id}}', '{{url_for('transactions.request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call('{{requests[2].id}}', '{{url_for('transactions.request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
                </tr>
             </table>
          </div>
@@ -129,8 +129,8 @@
          <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
             <table class="button-holder" style="position:absolute; right:4%;">
                <tr>
-                  <td><button onclick="make_api_accept_call('{{requests[3].id}}', '{{url_for('request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
-                  <td><button onclick="make_api_deny_call('{{requests[3].id}}', '{{url_for('request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+                  <td><button onclick="make_api_accept_call('{{requests[3].id}}', '{{url_for('transactions.request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call('{{requests[3].id}}', '{{url_for('transactions.request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
                </tr>
             </table>
          </div>
@@ -146,8 +146,8 @@
          <div class="flex-child"  style=" margin-bottom: 20px; margin-top: 25px;" >
             <table class="button-holder" style="position:absolute; right:4%;">
                <tr>
-                  <td><button onclick="make_api_accept_call('{{requests[4].id}}', '{{url_for('request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
-                  <td><button onclick="make_api_deny_call('{{requests[4].id}}', '{{url_for('request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
+                  <td><button onclick="make_api_accept_call('{{requests[4].id}}', '{{url_for('transactions.request')}}')" class="button-request"><span class="text">Accept</a></span></button></td>
+                  <td><button onclick="make_api_deny_call('{{requests[4].id}}', '{{url_for('transactions.request')}}')" class="button-request" style="margin-left: 20px;"><span class="text">Deny</span></button></td>
                </tr>
             </table>
          </div>

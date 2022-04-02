@@ -1,10 +1,9 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, FloatField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from lcoin_wallet.models import User
 from flask_login import current_user
-
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username',
@@ -63,29 +62,6 @@ class UpdateAccountForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('This email is already in use...')
-
-
-class SendMoneyForm(FlaskForm):
-    to = StringField('Username',
-                     validators=[DataRequired(), Length(min=2, max=20)])
-
-    concept = TextAreaField('Concept', validators=[Length(max=241)])
-
-    amount = FloatField('Amount', validators=[DataRequired()])
-
-    submit = SubmitField('Send')
-
-
-class RequestMoneyFrom(FlaskForm):
-    to = StringField('Username',
-                     validators=[DataRequired(), Length(min=2, max=20)])
-
-    concept = TextAreaField('Concept', validators=[Length(max=241)])
-
-    amount = FloatField('Amount', validators=[DataRequired()])
-
-    submit = SubmitField('Send')
-
 
 class RequestResetForm(FlaskForm):
     email = StringField('Email',

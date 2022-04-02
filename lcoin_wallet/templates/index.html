@@ -6,7 +6,7 @@
       <div class="flex-container">
          <div class="flex-child">
             <p class="bold_text" style="font-size: 170%">₺{{ current_user.balance }}</p>
-            <p class="subtext" style="font-size: 75%; padding-top: 10px; padding-bottom: 3px;">{{ (0.00025 * current_user.balance) | round(6) }} BTC</p>
+            <p class="subtext" style="font-size: 75%; padding-top: 10px; padding-bottom: 3px;">{{ (0.00025 * current_user.balance) | round(5) }} BTC</p>
          </div>
          <div class="flex-child" style="text-align: right; margin-top: 12px">
             <img class="lcoin_icon"
@@ -16,9 +16,9 @@
       </div>
       <table class="button-holder" style="margin-left: 4%;">
          <tr>
-            <td><button onclick="location.href='{{url_for('send')}}'" class="button"><span class="text">↑ Send</a></span></button></td>
-            <td><button onclick="location.href='{{url_for('request')}}'" class="button {{ notification }}" data-badge="" style="margin-left: 20px;"><span class="text">↓ Request</span></button></td>
-            <td><button onclick="location.href='{{url_for('account')}}'" class="button" style="margin-left: 20px;"><span class="text">⚙ </span></button></td>
+            <td><button onclick="location.href='{{url_for('transactions.send')}}'" class="button"><span class="text">↑ Send</a></span></button></td>
+            <td><button onclick="location.href='{{url_for('transactions.request')}}'" class="button {{ notification }}" data-badge="" style="margin-left: 20px;"><span class="text">↓ Request</span></button></td>
+            <td><button onclick="location.href='{{url_for('users.account')}}'" class="button" style="margin-left: 20px;"><span class="text">⚙ </span></button></td>
          </tr>
       </table>
       <div class="flex-container">
@@ -38,7 +38,7 @@
          </div>
          <div class="flex-child" style="text-align: right; margin-bottom: 20px;">
             <p class="bold_text" style="margin-right: 10%;">₺{{ current_user.balance }}</p>
-            <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">{{ (0.00025 * current_user.balance) | round(6) }} BTC</p>
+            <p class="dark-text" style="margin-top: -10px; margin-right: 10%; font-size: 80%;">{{ (0.00025 * current_user.balance) | round(5) }} BTC</p>
          </div>
       </div>
    </div>

@@ -1,4 +1,16 @@
+import secrets
+import os
+
+from lcoin_wallet import mail
+
+from flask import url_for, current_app
+
 from PIL import Image
+
+from flask_mail import Message
+
+from PIL import Image
+
 
 def resize_image(image: Image, length: int) -> Image:
     """
@@ -20,7 +32,8 @@ def resize_image(image: Image, length: int) -> Image:
         # The image is in portrait mode. Height is bigger than width.
 
         # This makes the width fit the LENGTH in pixels while conserving the ration.
-        resized_image = image.resize((length, int(image.size[1] * (length / image.size[0]))))
+        resized_image = image.resize(
+            (length, int(image.size[1] * (length / image.size[0]))))
 
         # Amount of pixel to lose in total on the height of the image.
         required_loss = (resized_image.size[1] - length)
@@ -35,7 +48,8 @@ def resize_image(image: Image, length: int) -> Image:
         # This image is in landscape mode or already squared. The width is bigger than the heihgt.
 
         # This makes the height fit the LENGTH in pixels while conserving the ration.
-        resized_image = image.resize((int(image.size[0] * (length / image.size[1])), length))
+        resized_image = image.resize(
+            (int(image.size[0] * (length / image.size[1])), length))
 
         # Amount of pixel to lose in total on the width of the image.
         required_loss = resized_image.size[0] - length
@@ -46,3 +60,33 @@ def resize_image(image: Image, length: int) -> Image:
 
         # We now have a length*length pixels image.
         return resized_image
+
+
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(7)
+
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+
+    picture_path = os.path.join(
+        current_app.root_path, 'static/profile_pics', picture_fn)
+
+    i = Image.open(form_picture)
+    i = resize_image(i, 125)
+
+    i.save(picture_path)
+
+    return picture_fn
+
+
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message('Password Reset Request',
+                  sender='noreply@lcoin.com',
+                  recipients=[user.email])
+    msg.body = f'''To reset your password visit the following link:
+{url_for('reset_token', token = token, _external=True)}
+    
+If you did not make this request simply ignore this email and no changes will be made.
+'''
+    mail.send(msg)
