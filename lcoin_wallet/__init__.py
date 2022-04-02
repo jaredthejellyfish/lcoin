@@ -5,7 +5,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
-from lcoin_wallet.error_handlers import page_not_found, internal_server_error
 
 from flask_minify import Minify
 
@@ -36,14 +35,13 @@ def create_app(config_class=Config):
     from lcoin_wallet.transactions.routes import transactions
     from lcoin_wallet.main.routes import main
     from lcoin_wallet.api.routes import api
+    from lcoin_wallet.errors.handlers import errors
+
     app.register_blueprint(users)
     app.register_blueprint(transactions)
     app.register_blueprint(main)
     app.register_blueprint(api)
-
-        
-    app.register_error_handler(404, page_not_found)
-    app.register_error_handler(500, internal_server_error)
+    app.register_blueprint(errors)
 
     Minify(app=app, html=True, js=True, cssless=True)
 
