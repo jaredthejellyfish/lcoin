@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta
+    <!-- <meta
       http-equiv="Content-Security-Policy"
       content="upgrade-insecure-requests"
-    />
+    /> -->
     <meta
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
@@ -15,7 +15,7 @@
 
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='/css/styles.css') }}"
+      href="{{ url_for('static', filename='css/styles.css') }}"
     />
 
     <!-- Latest compiled and minified CSS -->
@@ -34,22 +34,22 @@
 
     <link
       rel="shortcut icon"
-      href="{{ url_for('static', filename='/images/favicon.ico') }}"
+      href="{{ url_for('static', filename='images/favicon.ico') }}"
     />
 
     <script
       type="text/javascript"
-      src="{{ url_for('static', filename='/javascript/close-alert.js') }}"
+      src="{{ url_for('static', filename='javascript/close-alert.js') }}"
     ></script>
 
     <script
       type="text/javascript"
-      src="{{ url_for('static', filename='/javascript/api-accept.js') }}"
+      src="{{ url_for('static', filename='javascript/api-accept.js') }}"
     ></script>
     
     <script
       type="text/javascript"
-      src="{{ url_for('static', filename='/javascript/api-deny.js') }}"
+      src="{{ url_for('static', filename='javascript/api-deny.js') }}"
     ></script>
 
     {% if title %}
