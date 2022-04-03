@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta
+    <!-- <meta
       http-equiv="Content-Security-Policy"
       content="upgrade-insecure-requests"
-    />
+    /> -->
     <meta 
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
@@ -12,6 +12,11 @@
 
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
+
+    <script type="text/javascript" src="{{url_for('static', filename='javascript/app.js')}}"></script>
+    <link rel="manifest" href="{{url_for('static', filename='manifest.json')}}">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
     <link
       rel="stylesheet"
@@ -51,7 +56,7 @@
       type="text/javascript"
       src="{{ url_for('static', filename='javascript/api-deny.js') }}"
     ></script>
-
+    
     {% if title %}
     <title>{{ title }}</title>
     {% else %}

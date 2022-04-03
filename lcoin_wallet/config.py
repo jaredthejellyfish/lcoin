@@ -14,6 +14,7 @@ class Config():
         MAIL_USE_TLS = True
         MAIL_USERNAME = config['EMAIL']['EMAIL_USER']
         MAIL_PASSWORD = config['EMAIL']['EMAIL_PASS']
+        SSL_DISABLE = True
     else:
         SECRET_KEY = os.environ.get("SECRET_KEY")
         SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL").replace("postgres", "postgresql")

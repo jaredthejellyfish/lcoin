@@ -1,7 +1,8 @@
 from flask import render_template, url_for, redirect
 from lcoin_wallet.main.utils import check_if_pending, get_transactions
 from flask_login import login_required, current_user
-from flask import Blueprint
+from flask import Blueprint, make_response, send_from_directory
+
 
 main = Blueprint('main', __name__)
 
@@ -28,6 +29,17 @@ def home():
     else:
         return render_template("index.html", title='Wallet', image_file=image_file, notification=notification, transactions=[])
 
+@main.route('/sw.js')
+def sw():
+    return send_from_directory('static', 'sw.js')
+
+@main.route('/manifest.json')
+def manifest():
+    return send_from_directory('static','manifest.json')
+
+@main.route('/app/static/js')
+def app_js():
+    return send_from_directory('static', 'javascript/app.js')
 
 @main.route('/error_500')
 def error_500():
