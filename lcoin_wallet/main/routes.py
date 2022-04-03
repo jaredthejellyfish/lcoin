@@ -1,7 +1,7 @@
 from flask import render_template, url_for, redirect
 from lcoin_wallet.main.utils import check_if_pending, get_transactions
 from flask_login import login_required, current_user
-from flask import Blueprint, make_response, send_from_directory
+from flask import Blueprint, send_from_directory
 
 
 main = Blueprint('main', __name__)
@@ -21,8 +21,7 @@ def home():
     else:
         notification = None
 
-    image_file = url_for(
-        'static', filename='profile_pics/' + current_user.image_file)
+    image_file = url_for('main.profile_photo')
 
     if len(transactions) > 1:
         return render_template("index.html", title='Wallet', image_file=image_file, notification=notification, transactions=transactions[::-1])
@@ -40,6 +39,14 @@ def manifest():
 @main.route('/app/static/js')
 def app_js():
     return send_from_directory('static', 'javascript/app.js')
+
+@main.route('/l-coin-logo.png')
+def logo():
+    return send_from_directory('static', 'images/l-coin-logo.png')
+
+@main.route('/profile_photo')
+def profile_photo():
+    return send_from_directory('static', f'profile_pics/{current_user.image_file}')
 
 @main.route('/error_500')
 def error_500():
