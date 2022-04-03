@@ -2,7 +2,7 @@
     "name": "LCoin Wallet",
     "short_name": "LCoin",
     "description": "A wallet for LCoin.",
-    "theme_color": "#f9a241",
+    "theme_color": "#000000",
     "background_color": "#000000",
     "display": "standalone",
     "scope": "/",
