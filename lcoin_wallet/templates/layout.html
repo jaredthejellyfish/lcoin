@@ -5,7 +5,7 @@
       http-equiv="Content-Security-Policy"
       content="upgrade-insecure-requests"
     />
-    <meta 
+    <meta
       http-equiv="Cache-Control"
       content="no-cache, no-store, must-revalidate"
     />
@@ -17,6 +17,7 @@
       type="text/javascript"
       src="{{url_for('static', filename='javascript/app.js')}}"
     ></script>
+
     <link
       rel="manifest"
       href="{{url_for('static', filename='manifest.json')}}"
@@ -28,6 +29,7 @@
       rel="apple-touch-icon"
       href="{{url_for('static', filename='images/icons/ios/1024.png')}}"
     />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
@@ -37,6 +39,7 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
+
     <!-- Latest compiled and minified CSS -->
     <link
       rel="stylesheet"
@@ -65,28 +68,37 @@
       type="text/javascript"
       src="{{ url_for('static', filename='javascript/api-accept.js') }}"
     ></script>
-    
+
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='javascript/api-deny.js') }}"
     ></script>
-    
+
+    <script>
+      $(function () {
+        $('[data-toggle="popover"]').popover();
+      });
+    </script>
+
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
     <title>Learn Coin</title>
     {% endif %}
+
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
+
   {% with messages = get_flashed_messages(with_categories= true) %} {% if
   messages %} {% for category, message in messages %}
   <div class="alert alert-{{ category }}">
     <button type="button" class="close" data-dismiss="alert">⨉</button>
     {{ message }}
   </div>
+
   {% endfor %} {% endif %} {% endwith %} {% block content %} {%endblock%}
 </html>
