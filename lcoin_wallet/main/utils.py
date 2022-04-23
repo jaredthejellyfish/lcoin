@@ -44,7 +44,7 @@ def transaction_html_constructor(transactions, btc_price):
 
     for i in range(len(transactions)):
             if i == 0:
-                if transactions[i][4] is '':
+                if transactions[i][4] == '':
                     fromatted_base = f"""
                     <span  tabindex="0" class="" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="{transactions[i][1].strftime('%d-%m-%Y')}">
                         <div name="transaction" class="flex-container" style="margin-top: -20px; padding-left: 4%;">
@@ -80,7 +80,7 @@ def transaction_html_constructor(transactions, btc_price):
                     """.replace('\n', '')
 
             elif i == len(transactions) - 1:
-                if transactions[i][4] is '':
+                if transactions[i][4] == '':
                     fromatted_base = f"""
                     <span  tabindex="0" class="" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="{transactions[i][1].strftime('%d-%m-%Y')}">
                         <div name="transaction" class="flex-container" style="margin-top: -20px; padding-left: 4%; margin-bottom: 10px;">
@@ -112,7 +112,7 @@ def transaction_html_constructor(transactions, btc_price):
                     """.replace('\n', '')
 
             else:
-                if transactions[i][4] is '':
+                if transactions[i][4] == '':
                     fromatted_base = f"""
                     <span  tabindex="0" class="" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="{transactions[i][1].strftime('%d-%m-%Y')}">
                         <div name="transaction" class="flex-container" style="margin-top: -20px; padding-left: 4%;">
