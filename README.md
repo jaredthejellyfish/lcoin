@@ -177,7 +177,7 @@ This project can serve as a starting point for the building of centralised micro
 ## Roadmap
 - [X] Add 500 Error (Internal Server Error) page
 - [ ] Add QR code for transactions
-- [ ] Add Additional information on transactions
+- [X] Add Additional information on transactions
 - [ ] Add "Transactions" page to easily see your transactions in one single place
 - [ ] Multi-language Support
     - [ ] Catalan
