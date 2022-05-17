@@ -11,7 +11,7 @@ from flask import (render_template, url_for, flash,
                    redirect, request, Blueprint, current_app)
 import flask
 
-from lcoin_wallet.models import User, Transaction
+from lcoin_wallet.models import User, Transaction, EmailWhitelist
 
 from flask_login import login_required, login_user, current_user, logout_user
 
@@ -50,7 +50,9 @@ def account():
 
         current_user.username = form.username.data
 
-        current_user.email = form.email.data
+        if EmailWhitelist.query.filter(func.lower(User.email) == func.lower(form.email.data)).first():
+            current_user.email = form.email.data
+
         db.session.commit()
 
         flash('Your account has been updated!', 'success')
@@ -72,23 +74,27 @@ def register():
         return redirect(url_for('main.home'))
 
     form = RegistrationForm()
-    new_user_exists = User.query.filter(func.lower(User.username) == func.lower(
-        form.username.data), func.lower(User.email) == func.lower(form.email.data)).first()
-    if new_user_exists:
-        flash(
-            f'Welcome {new_user_exists.username}! Looks like you are already registered, please log in!', 'success')
-        return redirect(url_for('users.login'))
+    if EmailWhitelist.query.filter(func.lower(User.email) == func.lower(form.email.data)).first():
+        new_user_exists = User.query.filter(func.lower(User.username) == func.lower(
+            form.username.data), func.lower(User.email) == func.lower(form.email.data)).first()
+        if new_user_exists:
+            flash(
+                f'Welcome {new_user_exists.username}! Looks like you are already registered, please log in!', 'success')
+            return redirect(url_for('users.login'))
 
-    if form.validate_on_submit():
-        hashed_passoword = bcrypt.generate_password_hash(
-            form.password.data).decode('utf-8')
-        user = User(username=form.username.data,
-                    email=form.email.data, password=hashed_passoword)
-        db.session.add(user)
-        db.session.commit()
+        if form.validate_on_submit():
+            hashed_passoword = bcrypt.generate_password_hash(
+                form.password.data).decode('utf-8')
+            user = User(username=form.username.data,
+                        email=form.email.data, password=hashed_passoword)
+            db.session.add(user)
+            db.session.commit()
+            flash(
+                f'Welcome {user.username}! You can now use your credentials to log in.', 'success')
+            return redirect(url_for('main.home'))
+    else:
         flash(
-            f'Welcome {user.username}! You can now use your credentials to log in.', 'success')
-        return redirect(url_for('main.home'))
+            f'Sorry but that email is not in our list!', 'danger')
 
     return render_template('register.html', title='Register', form=form)
 
