@@ -74,27 +74,34 @@ def register():
         return redirect(url_for('main.home'))
 
     form = RegistrationForm()
-    if EmailWhitelist.query.filter(func.lower(User.email) == func.lower(form.email.data)).first():
-        new_user_exists = User.query.filter(func.lower(User.username) == func.lower(
-            form.username.data), func.lower(User.email) == func.lower(form.email.data)).first()
-        if new_user_exists:
-            flash(
-                f'Welcome {new_user_exists.username}! Looks like you are already registered, please log in!', 'success')
-            return redirect(url_for('users.login'))
+    new_user_exists = User.query.filter(func.lower(User.username) == func.lower(
+        form.username.data), func.lower(User.email) == func.lower(form.email.data)).first()
+    if new_user_exists:
+        flash(
+            f'Welcome {new_user_exists.username}! Looks like you are already registered, please log in!', 'success')
+        return redirect(url_for('users.login'))
 
-        if form.validate_on_submit():
+    if form.validate_on_submit():
+        if EmailWhitelist.query.filter_by(email=form.email.data).first():
             hashed_passoword = bcrypt.generate_password_hash(
                 form.password.data).decode('utf-8')
+            
             user = User(username=form.username.data,
                         email=form.email.data, password=hashed_passoword)
+            
+            transaction = Transaction(by="LCoin",
+                                      to=form.username.data,
+                                      amount=10,
+                                      concept="Welcome to LCoin!")
             db.session.add(user)
+            db.session.add(transaction)
             db.session.commit()
             flash(
                 f'Welcome {user.username}! You can now use your credentials to log in.', 'success')
             return redirect(url_for('main.home'))
-    else:
-        flash(
-            f'Sorry but that email is not in our list!', 'danger')
+        else:
+            flash(
+                f'Sorry but that email is not in our list!', 'danger')
 
     return render_template('register.html', title='Register', form=form)
 

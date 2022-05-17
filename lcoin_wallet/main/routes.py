@@ -27,10 +27,10 @@ def home():
 
     image_file = url_for('main.profile_photo')
 
-    if len(transactions) > 1:
+    if len(transactions) > 0:
         return render_template("index.html", title='Wallet', image_file=image_file, notification=notification, transactions_html=transactions_html, btc_price=btc_price)
     else:
-        return render_template("index.html", title='Wallet', image_file=image_file, notification=notification, transactions=[])
+        return render_template("index.html", title='Wallet', image_file=image_file, notification=notification, transactions=[], btc_price=btc_price)
 
 
 @main.route('/sw.js')
