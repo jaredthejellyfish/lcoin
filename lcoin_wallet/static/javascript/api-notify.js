@@ -1,6 +1,5 @@
 
 $(function () {
-    $('html').on('click', function () {
         setInterval(function () {
             const url = `/api/pending_requests`;
             const notify_element = document.getElementById("notify");
@@ -35,5 +34,4 @@ $(function () {
                 });
 
         }, 10000);
-    });
 });
