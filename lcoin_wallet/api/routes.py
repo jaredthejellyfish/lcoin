@@ -7,7 +7,9 @@ import flask
 
 from lcoin_wallet.models import User, Transaction, Request, EmailWhitelist
 
-from lcoin_wallet.api.utils import api_response, get_secret_key
+from lcoin_wallet.api.utils import api_response, get_secret_key,check_if_pending
+
+from flask_login import current_user, login_required
 
 from flask import Blueprint
 
@@ -84,3 +86,13 @@ def add_email(secret, email):
             return api_response({"state": "unauthorized"})
     except:
         return api_response({"state": "error"})
+
+@api.route("/api/pending_requests", methods=["GET"])
+@login_required
+def pending_request():
+    exists, _ = check_if_pending(current_user)
+    
+    if exists[1] is True:
+        return api_response({"notification_badge": "true"})
+    else:
+        return api_response({"notification_badge": "false"})

@@ -17,7 +17,7 @@
       <table class="button-holder" style="margin-left: 4%;">
          <tr>
             <td><button onclick="location.href='{{url_for('transactions.send')}}'" class="button"><span class="text">↑ Send</a></span></button></td>
-            <td><button onclick="location.href='{{url_for('transactions.request')}}'" class="button {{ notification }}" data-badge="" style="margin-left: 20px;"><span class="text">↓ Request</span></button></td>
+            <td><button onclick="location.href='{{url_for('transactions.request')}}'" id="notify" class="button {{ notification }}" data-badge="" style="margin-left: 20px;"><span class="text">↓ Request</span></button></td>
             <td><button onclick="location.href='{{url_for('users.account')}}'" class="button" style="margin-left: 20px;"><span class="text">⚙ </span></button></td>
          </tr>
       </table>
