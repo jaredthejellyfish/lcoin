@@ -82,17 +82,18 @@ def register():
         return redirect(url_for('users.login'))
 
     if form.validate_on_submit():
-        if EmailWhitelist.query.filter_by(email=form.email.data).first():
+        whitelist_entry = EmailWhitelist.query.filter_by(email=form.email.data).first()
+        if whitelist_entry:
             hashed_passoword = bcrypt.generate_password_hash(
                 form.password.data).decode('utf-8')
             
             user = User(username=form.username.data,
-                        email=form.email.data, password=hashed_passoword)
+                        email=form.email.data, password=hashed_passoword, balance=whitelist_entry.initial_balance)
             
             transaction = Transaction(by="LCoin",
                                       to=form.username.data,
-                                      amount=10,
-                                      concept="Welcome to LCoin!")
+                                      amount=whitelist_entry.initial_balance,
+                                      concept="Welcome to LCoin, here is the balance you had in the last marketplace!")
             db.session.add(user)
             db.session.add(transaction)
             db.session.commit()

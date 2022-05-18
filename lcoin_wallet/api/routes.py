@@ -71,14 +71,14 @@ def deny_request():
             return api_response({"state": "error"})
 
 
-@api.route("/api/add_email/<secret>/<email>", methods=["GET"])
-def add_email(secret, email):
-    print(email)
+@api.route("/api/add_email/<secret>/<email>/<start_balance>", methods=["GET"])
+def add_email(secret, email, start_balance):
+    print(email, start_balance)
     try:
         key = get_secret_key()
         
         if secret == key:
-            email = EmailWhitelist(email=email)
+            email = EmailWhitelist(email=email, initial_balance=start_balance)
             db.session.add(email)
             db.session.commit()
             return api_response({"state": "success"})
@@ -96,3 +96,5 @@ def pending_request():
         return api_response({"notification_badge": "true"})
     else:
         return api_response({"notification_badge": "false"})
+    
+    #http://10.10.20.57:8080/api/add_email/Holalola123/ger.almenara@gmail.com/41

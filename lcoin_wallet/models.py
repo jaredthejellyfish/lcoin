@@ -24,7 +24,7 @@ class User(db.Model, UserMixin):
 
     password = db.Column(db.String(60), nullable=False)
 
-    balance = db.Column(db.Float, nullable=False, default=10)
+    balance = db.Column(db.Float, nullable=False)
     
     def get_reset_token(self):
         s = Serializer(current_app.config['SECRET_KEY'],)
@@ -81,6 +81,8 @@ class EmailWhitelist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     email = db.Column(db.String(120), unique=True, nullable=False)
+    
+    initial_balance = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return f"EmailWhitelist('{self.id}', '{self.email}')"
+        return f"EmailWhitelist('{self.id}', '{self.email}', '{self.initial_balance}')"
