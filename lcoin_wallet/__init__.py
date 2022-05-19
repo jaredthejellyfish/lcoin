@@ -24,6 +24,11 @@ def create_app(config_class=Config):
     bcrypt.init_app(app)
     login_manager.init_app(app)
 
+    @app.after_request
+    def apply_nocache(response):
+        response.headers["Cache-Control"] = "no-cache"
+        return response
+
     from lcoin_wallet.users.routes import users
     from lcoin_wallet.transactions.routes import transactions
     from lcoin_wallet.main.routes import main
