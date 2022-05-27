@@ -16,6 +16,7 @@ from lcoin_wallet.transactions.utils import get_sent, check_if_pending
 
 transactions = Blueprint('transactions', __name__)
 
+
 @transactions.route('/send', methods=['GET', 'POST'])
 @login_required
 def send():
@@ -24,7 +25,8 @@ def send():
 
     form = SendMoneyForm()
     if form.validate_on_submit():
-        to_user = User.query.filter(func.lower(User.username) == func.lower(form.to.data)).first()
+        to_user = User.query.filter(func.lower(
+            User.username) == func.lower(form.to.data)).first()
         if to_user:
             if current_user.username == to_user.username:
                 flash('You cannot send money to yourself!', 'danger')
@@ -37,16 +39,21 @@ def send():
                                           to=to_user.username,
                                           amount=form.amount.data,
                                           concept=form.concept.data)
+                if form.amount.data > 0:
+                    current_user.balance -= form.amount.data
+                    to_user.balance += form.amount.data
 
-                current_user.balance -= form.amount.data
-                to_user.balance += form.amount.data
+                    db.session.add(transaction)
+                    db.session.commit()
 
-                db.session.add(transaction)
-                db.session.commit()
+                    flash(
+                        f'Succesfully sent ₺{form.amount.data} to {to_user.username}!', 'success')
+                    return redirect(url_for('main.home'))
 
-                flash(
-                    f'Succesfully sent ₺{form.amount.data} to {to_user.username}!', 'success')
-                return redirect(url_for('main.home'))
+                else:
+                    flash(
+                        f'You cannot send negative money.', 'danger')
+                    return redirect(url_for('main.home'))
 
         else:
             flash(
@@ -63,7 +70,8 @@ def request():
 
     try:
         if args['s'] == 'error':
-            flash(f'Error processing your request, the user does not have enough funds...', 'danger')
+            flash(
+                f'Error processing your request, the user does not have enough funds...', 'danger')
             return redirect(url_for('transactions.request'))
         elif args["u"] and args['a'] and args['s'] == 'accept':
             flash(f'Succesfully sent ₺{args["a"]} to {args["u"]}!', 'success')
@@ -76,24 +84,31 @@ def request():
 
     form = RequestMoneyFrom()
     if form.validate_on_submit():
-        to_user = User.query.filter(func.lower(User.username) == func.lower(form.to.data)).first()
+        to_user = User.query.filter(func.lower(
+            User.username) == func.lower(form.to.data)).first()
         if to_user:
             if current_user.username == to_user.username:
                 flash('You cannot request money from yourself!', 'danger')
                 return redirect(url_for('transactions.request'))
             else:
-                request = Request(by=current_user.username,
-                                  to=to_user.username,
-                                  amount=form.amount.data,
-                                  concept=form.concept.data,
-                                  active=True)
+                if form.amount.data > 0:
+                    request = Request(by=current_user.username,
+                                      to=to_user.username,
+                                      amount=form.amount.data,
+                                      concept=form.concept.data,
+                                      active=True)
 
-                db.session.add(request)
-                db.session.commit()
+                    db.session.add(request)
+                    db.session.commit()
 
-                flash(
-                    f'Succesfully sent a request for ₺{form.amount.data} to {to_user.username}!', 'success')
-                return redirect(url_for('transactions.request'))
+                    flash(
+                        f'Succesfully sent a request for ₺{form.amount.data} to {to_user.username}!', 'success')
+                    return redirect(url_for('transactions.request'))
+
+                else:
+                    flash(
+                        f'{form.to.data} is not registered as a user in our database...', 'danger')
+                    return redirect(url_for('transactions.send'))
 
         else:
             flash(
