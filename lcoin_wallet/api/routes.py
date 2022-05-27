@@ -96,5 +96,4 @@ def pending_request():
         return api_response({"notification_badge": "true"})
     else:
         return api_response({"notification_badge": "false"})
-    
-    #http://10.10.20.57:8080/api/add_email/Holalola123/ger.almenara@gmail.com/41
+  
